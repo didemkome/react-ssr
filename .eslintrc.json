@@ -39,7 +39,6 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    //Nextjs doesn't require react import
     "react/jsx-filename-extension": [
       1,
       {
@@ -85,7 +84,7 @@
     "no-underscore-dangle": "off",
     "operator-linebreak": ["error", "after"],
     "max-len": "off",
-    "no-console": "error",
+    "no-console": "off",
     "unsafe-optional-chaining": "off",
     "no-multiple-empty-lines": [
       "error",

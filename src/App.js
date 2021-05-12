@@ -1,8 +1,9 @@
 import React from "react";
+import Program from "./components/Program";
 
 const App = () => (
 	<div>
-		<header className="header">app</header>
+		<Program />
 	</div>
 );
 
