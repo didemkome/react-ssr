@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&subset=latin-ext&display=swap');
-@import "./variables";
+@import "variables";
 
 html {
   font-family: sans-serif;
@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  box-sizing: border-box;
   color: $color-black;
   font-family: 'Rubik', Arial, Helvetica, sans-serif;
   line-height: 1.2;
@@ -47,4 +48,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 img {
   max-width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
