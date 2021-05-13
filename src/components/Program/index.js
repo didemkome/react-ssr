@@ -1,18 +1,20 @@
 import React, { Fragment } from "react";
 import "./style.scss";
 import MarketHeader from "./Header";
+import Slip from "../Slip";
 
 const data = require("../../../db.json");
 
 const Program = () => {
-	console.log("data: ", data);
+	const handleOddClick = (betItem) => {
+		console.log("betItem", betItem);
+	};
 	return (
 		<div className="events-wrapper">
 			<div className="bulletin-events">
 				{Object?.values(data?.Events)
 					?.splice(0, 20)
 					?.map((event, index) => {
-						console.log("event: ", event);
 						const { C, T, N, OCG } = { ...event };
 						return (
 							<Fragment key={C}>
@@ -23,16 +25,21 @@ const Program = () => {
 									</div>
 									<div className="bulletin event-comment">Yorumlar</div>
 									{Object.values(OCG)?.map((odds) => {
-										console.log("odd: ", odds);
-										const { MBS, OC } = { ...odds };
+										const { MBS, OC, ID } = { ...odds };
 										return (
-											<>
+											<Fragment key={ID}>
 												<div className="bulletin col">{MBS}</div>
-												{Object?.values(OC)?.map((odd) => {
-													console.log("odd: ", odd);
-													return <div className="bulletin col">{odd.O}</div>;
-												})}
-											</>
+												{Object?.values(OC)?.map((odd) => (
+													<div
+														key={odd?.ID}
+														className="bulletin col"
+														as="button"
+														onClick={() => handleOddClick(event)}
+													>
+														{odd?.O}
+													</div>
+												))}
+											</Fragment>
 										);
 									})}
 								</div>
@@ -40,6 +47,7 @@ const Program = () => {
 						);
 					})}
 			</div>
+			<Slip />
 		</div>
 	);
 };

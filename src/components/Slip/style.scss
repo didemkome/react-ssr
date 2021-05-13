@@ -1,0 +1,19 @@
+@import "../../assets/styles/variables";
+
+.slip-wrapper{
+  background-color: $color-slip-bc;
+  border: 1px solid $color-black;
+  bottom: 0;
+  height: 40px;
+  padding: 5px;
+  position: fixed;
+  right: 16%;
+  width: 300px;
+  z-index: 100;
+}
+
+.total{
+  align-items: center;
+  display: flex;
+  height: inherit;
+}
