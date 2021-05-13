@@ -1,10 +1,6 @@
 import React from "react";
 import Program from "./components/Program";
 
-const App = () => (
-	<div>
-		<Program />
-	</div>
-);
+const App = () => <Program />;
 
 export default App;

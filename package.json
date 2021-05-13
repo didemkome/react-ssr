@@ -6,8 +6,7 @@
 	"scripts": {
 		"lint": "eslint . --cache && echo \"eslint: no lint errors\"",
 		"lint:fix": "eslint . --fix && echo \"eslint: no lint errors\"",
-		"start": "webpack-cli serve --mode development && npm run server",
-		"server": "json-server --watch db.json"
+		"start": "webpack-cli serve --mode development"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.0",
@@ -25,6 +24,7 @@
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-react": "^7.23.2",
 		"eslint-plugin-react-hooks": "^4.2.0",
+		"html-webpack-plugin": "^5.3.1",
 		"prettier": "^2.3.0",
 		"react-hot-loader": "^4.13.0",
 		"style-loader": "^2.0.0",
@@ -36,6 +36,7 @@
 		"node-sass": "^6.0.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"react-router-dom": "^5.2.0"
+		"react-router-dom": "^5.2.0",
+		"sass-loader": "^11.1.0"
 	}
 }

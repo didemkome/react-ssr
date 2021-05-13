@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&subset=latin-ext&display=swap');
+@import "./variables";
+
+html {
+  font-family: sans-serif;
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: $color-black;
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
