@@ -1,4 +1,4 @@
-import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "./actionsType";
+import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "./actionTypes";
 import store from "../store";
 
 export const addBetItem = (betItem) => ({

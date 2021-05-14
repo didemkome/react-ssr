@@ -1,6 +1,6 @@
-import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "../actions/actionsType";
+import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "../actions/actionTypes";
 
-const initialState = {
+export const initialState = {
 	slip: {
 		betItems: [],
 		maxWinning: "0.00",
