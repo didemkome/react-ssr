@@ -7,11 +7,11 @@ import { throttle } from "underscore";
 import rootReducer from "../reducers/rootReducer";
 import { loadState, saveState } from "../../utils";
 
-let persistedState = loadState();
+/* let persistedState = loadState();
 
 if (!persistedState) {
 	persistedState = undefined;
-}
+} */
 
 const middlewares = [];
 let logger;
@@ -22,8 +22,24 @@ if (process.env.NODE_ENV === `development`) {
 	});
 	middlewares.push(logger);
 }
+const makeConfiguredStore = (reducer, initialState) => createStore(reducer, initialState, applyMiddleware(...middlewares));
 
-const store = createStore(rootReducer, persistedState, composeWithDevTools(applyMiddleware(...middlewares)));
+// we need it only on client side
+// eslint-disable-next-line global-require
+const { persistStore, persistReducer } = require("redux-persist");
+// eslint-disable-next-line global-require
+const storage = require("redux-persist/lib/storage").default;
+
+const persistConfig = {
+	key: "slip",
+	storage,
+	timeout: 0,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = makeConfiguredStore(persistedReducer);
+
+store.__persistor = persistStore(store); // Nasty hack
 
 store.subscribe(
 	throttle(

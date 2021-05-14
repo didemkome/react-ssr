@@ -1,4 +1,4 @@
-import { ADD_BET_ITEM, REMOVE_BET_ITEMS } from "../actions/actionsType";
+import { ADD_BET_ITEM, CLEAR_BET_ITEMS, UPDATE_BET_ITEMS } from "../actions/actionsType";
 
 const initialState = {
 	slip: {
@@ -17,8 +17,23 @@ const bettingReducer = (state = initialState, { type, payload }) => {
 					betItems: [...state?.slip?.betItems, payload],
 				},
 			};
-		case REMOVE_BET_ITEMS:
-			return false;
+
+		case UPDATE_BET_ITEMS: {
+			return {
+				...state,
+				slip: {
+					...state.slip,
+					betItems: [...payload],
+				},
+			};
+		}
+		case CLEAR_BET_ITEMS:
+			return {
+				...state,
+				slip: {
+					...initialState?.slip,
+				},
+			};
 		default:
 			return state;
 	}

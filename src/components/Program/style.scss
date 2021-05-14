@@ -40,6 +40,10 @@
     border-right: 2px solid $color-gray;
     min-width: 40px;
     justify-content: center;
+
+    &.active{
+      background-color: $color-active;
+    }
   }
 }
 

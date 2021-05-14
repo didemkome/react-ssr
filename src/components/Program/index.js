@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import "./style.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MarketHeader from "./Header";
 import Slip from "../Slip";
-import { handleAddBetItem } from "../../core/redux/actions/bettingActions";
+import { handleOddClick } from "../../core/utils";
 
 const data = require("../../../db.json");
 
@@ -11,11 +11,13 @@ console.log("data: ", data);
 
 const Program = () => {
 	const dispatch = useDispatch();
+	const betItems = useSelector((state) => state?.betting?.slip?.betItems);
+	let isActive = false;
 	return (
 		<div className="events-wrapper">
 			<div className="bulletin-events">
 				{Object?.values(data?.Events)
-					?.splice(0, 20)
+					?.splice(0, 5)
 					?.map((event, index) => {
 						const { C, T, N, OCG } = { ...event };
 						return (
@@ -31,16 +33,26 @@ const Program = () => {
 										return (
 											<Fragment key={ID}>
 												<div className="bulletin col">{MBS}</div>
-												{Object?.values(OC)?.map((odd) => (
-													<div
-														key={odd?.ID}
-														className="bulletin col"
-														as="button"
-														onClick={() => dispatch(handleAddBetItem(event))}
-													>
-														{odd?.O}
-													</div>
-												))}
+												{Object?.values(OC)?.map((odd) => {
+													console.log("event: ", event);
+													if (betItems?.some((item) => item?.C === event?.C)) {
+														isActive =
+															betItems?.length > 0
+																? betItems?.some((item) => item?.ID === odd?.ID)
+																: false;
+													}
+													const activeOdd = isActive ? " active" : "";
+													return (
+														<div
+															key={odd?.ID}
+															className={`bulletin col${activeOdd}`}
+															as="button"
+															onClick={() => handleOddClick(event, odd, odds, dispatch)}
+														>
+															{odd?.O}
+														</div>
+													);
+												})}
 											</Fragment>
 										);
 									})}
