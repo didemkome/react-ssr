@@ -1,16 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, memo } from "react";
 import "./style.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import MarketHeader from "./Header";
 import Slip from "../Slip";
 import { handleOddClick } from "../../core/utils";
 
 const data = require("../../../db.json");
 
-const Program = () => {
+const Program = ({ betItems }) => {
 	const dispatch = useDispatch();
-	const betItems = useSelector((state) => state?.betting?.slip?.betItems);
 	let isActive = false;
+
+	console.log("betItems: ", betItems);
 
 	return (
 		<div className="events-wrapper">
@@ -18,7 +20,8 @@ const Program = () => {
 				{Object?.values(data?.Events)
 					?.splice(0, 2)
 					?.map((event, index) => {
-						const { C, T, N, OCG, NID } = { ...event };
+						const { C, T, N, OCG } = { ...event };
+						console.log("event: ", event);
 						return (
 							<Fragment key={C}>
 								<MarketHeader {...event} index={index} />
@@ -33,17 +36,18 @@ const Program = () => {
 											<Fragment key={ID}>
 												<div className="bulletin col">{MBS}</div>
 												{Object?.values(OC)?.map((odd) => {
-													if (betItems?.some((item) => item?.NID === NID)) {
+													if (betItems?.some((item) => item?.C === C)) {
 														isActive =
 															betItems?.length > 0
 																? betItems?.some((item) => item?.O === odd?.O)
 																: false;
 													}
-													const activeOdd = isActive ? " active" : "";
+													console.log("isActive: ", event?.C, isActive, odd.O);
+													const activeOdd = isActive ? "active" : " ";
 													return (
 														<div
-															key={odd?.ID}
-															className={`bulletin col${activeOdd}`}
+															key={odd?.O}
+															className={`bulletin col button ${activeOdd}`}
 															as="button"
 															onClick={() => handleOddClick(event, odd, odds, dispatch)}
 														>
@@ -65,4 +69,8 @@ const Program = () => {
 	);
 };
 
-export default Program;
+Program.propTypes = {
+	betItems: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+export default memo(Program);

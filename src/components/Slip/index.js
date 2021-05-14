@@ -26,7 +26,7 @@ const Slip = () => {
 			{betItems?.map((item) => (
 				<div className="slip-item" key={item?.NID}>
 					<div className="item-info">
-						<div>{item?.MBS}</div>
+						<div>{item?.NID}</div>
 						<div>Kod: {item?.C}</div>
 						<div>{item?.N}</div>
 					</div>

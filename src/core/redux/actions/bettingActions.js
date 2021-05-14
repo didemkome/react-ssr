@@ -26,24 +26,37 @@ export const handleClearBetItems = () => (dispatch) => {
 
 export const handleRemoveBetItem = (betItem) => (dispatch) => {
 	const currentBetItems = store?.getState()?.betting?.slip?.betItems;
+	console.log("currentBetItems: ", currentBetItems);
 	if (currentBetItems.length === 1) {
 		dispatch(handleClearBetItems());
 	}
-	dispatch(updateBetItems(currentBetItems.filter((item) => item.ED !== betItem.ED)));
+	dispatch(updateBetItems(currentBetItems.filter((item) => item.C !== betItem.C)));
 };
 
 export const handleAddBetItem = (betItem) => (dispatch) => {
 	const currentBetItems = store?.getState()?.betting?.slip?.betItems;
-	if (currentBetItems.some((item) => item.NID === betItem.NID)) {
+	/*	if (currentBetItems.some((item) => item.C === betItem.C)) {
 		if (currentBetItems.some((item) => item.O === betItem.O)) {
 			const element = currentBetItems.find((item) => item.O === betItem.O);
+			console.log("remove");
 			dispatch(handleRemoveBetItem(element));
 		} else {
+			console.log("aynı event");
 			dispatch(handleRemoveBetItem(betItem));
 			dispatch(addBetItem(betItem));
 		}
-	}
-	if (currentBetItems.some((item) => item.NID !== betItem.NID) || currentBetItems?.length === 0) {
+	} */
+	if (currentBetItems.some((item) => item.C === betItem.C) && currentBetItems.some((item) => item.O === betItem.O)) {
+		const element = currentBetItems.find((item) => item.C === betItem.C);
+		console.log("remove");
+		dispatch(handleRemoveBetItem(element));
+	} else if (currentBetItems.some((item) => item.C === betItem.C)) {
+		/* Kuponda Aynı Maç ama farklı oran varsa */
+		console.log("aynı event farklı oran");
+		dispatch(handleRemoveBetItem(betItem)); /* Önce mevcut oranı siliyoruz */
+		dispatch(addBetItem(betItem)); /* Sonra yeni oranı ekliyoruz */
+	} else {
+		console.log("ilk defa eklendi eventten");
 		dispatch(addBetItem(betItem));
 	}
 };

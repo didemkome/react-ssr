@@ -41,6 +41,10 @@
     min-width: 40px;
     justify-content: center;
 
+    &.button{
+      cursor: pointer;
+    }
+
     &.active{
       background-color: $color-active;
     }
