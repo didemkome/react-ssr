@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import MarketHeader from "./Header";
 import Slip from "../Slip";
 import { handleOddClick } from "../../core/utils";
+import Header from "./Header/header";
 
 const data = require("../../../db.json");
 
@@ -16,9 +17,10 @@ const Program = ({ betItems }) => {
 
 	return (
 		<div className="events-wrapper">
+			<Header data={data} />
 			<div className="bulletin-events">
 				{Object?.values(data?.Events)
-					?.splice(0, 2)
+					?.splice(0, 50)
 					?.map((event, index) => {
 						const { C, T, N, OCG } = { ...event };
 						console.log("event: ", event);

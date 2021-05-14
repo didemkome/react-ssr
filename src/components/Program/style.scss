@@ -35,6 +35,13 @@
     width: 90px;
   }
 
+  &.sticky{
+    background-color: $color-lightgrey;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
   &.col{
     border-bottom: none;
     border-right: 2px solid $color-gray;
