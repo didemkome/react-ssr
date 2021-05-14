@@ -7,12 +7,11 @@ import { handleOddClick } from "../../core/utils";
 
 const data = require("../../../db.json");
 
-console.log("data: ", data);
-
 const Program = () => {
 	const dispatch = useDispatch();
 	const betItems = useSelector((state) => state?.betting?.slip?.betItems);
 	let isActive = false;
+
 	return (
 		<div className="events-wrapper">
 			<div className="bulletin-events">
@@ -20,7 +19,6 @@ const Program = () => {
 					?.splice(0, 2)
 					?.map((event, index) => {
 						const { C, T, N, OCG, NID } = { ...event };
-						console.log("event: ", event);
 						return (
 							<Fragment key={C}>
 								<MarketHeader {...event} index={index} />

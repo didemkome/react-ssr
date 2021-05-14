@@ -1,4 +1,4 @@
-import { ADD_BET_ITEM, CLEAR_BET_ITEMS, UPDATE_BET_ITEMS } from "./actionsType";
+import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "./actionsType";
 import store from "../store";
 
 export const addBetItem = (betItem) => ({
@@ -15,6 +15,11 @@ export const updateBetItems = (betItems) => ({
 	payload: betItems,
 });
 
+export const setMaxWinning = (data) => ({
+	type: SET_MAX_WINNING,
+	payload: data,
+});
+
 export const handleClearBetItems = () => (dispatch) => {
 	dispatch(clearBetItems());
 };
@@ -29,21 +34,16 @@ export const handleRemoveBetItem = (betItem) => (dispatch) => {
 
 export const handleAddBetItem = (betItem) => (dispatch) => {
 	const currentBetItems = store?.getState()?.betting?.slip?.betItems;
-	console.log("currentBetItems: ", currentBetItems);
-	console.log("betItem: ", betItem);
 	if (currentBetItems.some((item) => item.NID === betItem.NID)) {
 		if (currentBetItems.some((item) => item.O === betItem.O)) {
 			const element = currentBetItems.find((item) => item.O === betItem.O);
-			console.log("element: ", element);
 			dispatch(handleRemoveBetItem(element));
 		} else {
-			console.log("aynı event");
 			dispatch(handleRemoveBetItem(betItem));
 			dispatch(addBetItem(betItem));
 		}
 	}
 	if (currentBetItems.some((item) => item.NID !== betItem.NID) || currentBetItems?.length === 0) {
-		console.log("ilk defa eklendi");
 		dispatch(addBetItem(betItem));
 	}
 };

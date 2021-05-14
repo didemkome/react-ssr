@@ -1,9 +1,9 @@
-import { ADD_BET_ITEM, CLEAR_BET_ITEMS, UPDATE_BET_ITEMS } from "../actions/actionsType";
+import { ADD_BET_ITEM, CLEAR_BET_ITEMS, SET_MAX_WINNING, UPDATE_BET_ITEMS } from "../actions/actionsType";
 
 const initialState = {
 	slip: {
 		betItems: [],
-		maxWinning: "",
+		maxWinning: "0.00",
 	},
 };
 
@@ -24,6 +24,16 @@ const bettingReducer = (state = initialState, { type, payload }) => {
 				slip: {
 					...state.slip,
 					betItems: [...payload],
+				},
+			};
+		}
+
+		case SET_MAX_WINNING: {
+			return {
+				...state,
+				slip: {
+					...state.slip,
+					maxWinning: payload,
 				},
 			};
 		}

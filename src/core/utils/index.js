@@ -3,7 +3,6 @@ import { handleAddBetItem } from "../redux/actions/bettingActions";
 export const loadState = () => {
 	try {
 		const serializedState = localStorage.getItem("slip");
-		console.log("serializedState: ", serializedState);
 		if (serializedState === null) {
 			return undefined;
 		}
