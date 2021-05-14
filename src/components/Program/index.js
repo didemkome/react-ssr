@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
 import "./style.scss";
+import { useDispatch } from "react-redux";
 import MarketHeader from "./Header";
 import Slip from "../Slip";
+import { handleAddBetItem } from "../../core/redux/actions/bettingActions";
 
 const data = require("../../../db.json");
 
+console.log("data: ", data);
+
 const Program = () => {
-	const handleOddClick = (betItem) => {
-		console.log("betItem", betItem);
-	};
+	const dispatch = useDispatch();
 	return (
 		<div className="events-wrapper">
 			<div className="bulletin-events">
@@ -34,7 +36,7 @@ const Program = () => {
 														key={odd?.ID}
 														className="bulletin col"
 														as="button"
-														onClick={() => handleOddClick(event)}
+														onClick={() => dispatch(handleAddBetItem(event))}
 													>
 														{odd?.O}
 													</div>
@@ -47,6 +49,7 @@ const Program = () => {
 						);
 					})}
 			</div>
+
 			<Slip />
 		</div>
 	);
