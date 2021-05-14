@@ -17,9 +17,10 @@ const Program = () => {
 		<div className="events-wrapper">
 			<div className="bulletin-events">
 				{Object?.values(data?.Events)
-					?.splice(0, 5)
+					?.splice(0, 2)
 					?.map((event, index) => {
-						const { C, T, N, OCG } = { ...event };
+						const { C, T, N, OCG, NID } = { ...event };
+						console.log("event: ", event);
 						return (
 							<Fragment key={C}>
 								<MarketHeader {...event} index={index} />
@@ -34,11 +35,10 @@ const Program = () => {
 											<Fragment key={ID}>
 												<div className="bulletin col">{MBS}</div>
 												{Object?.values(OC)?.map((odd) => {
-													console.log("event: ", event);
-													if (betItems?.some((item) => item?.C === event?.C)) {
+													if (betItems?.some((item) => item?.NID === NID)) {
 														isActive =
 															betItems?.length > 0
-																? betItems?.some((item) => item?.ID === odd?.ID)
+																? betItems?.some((item) => item?.O === odd?.O)
 																: false;
 													}
 													const activeOdd = isActive ? " active" : "";

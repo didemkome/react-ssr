@@ -24,9 +24,6 @@ export const saveState = (state) => {
 };
 
 export const handleOddClick = (event, odd, market, dispatch) => {
-	console.log("event: ", event);
-	console.log("odd: ", odd);
-	console.log("market: ", market);
 	const { N, C, NID } = { ...event };
 	const { O, ID } = { ...odd };
 	const { ED, ESD, MBS } = { ...market };

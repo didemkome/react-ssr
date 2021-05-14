@@ -29,15 +29,21 @@ export const handleRemoveBetItem = (betItem) => (dispatch) => {
 
 export const handleAddBetItem = (betItem) => (dispatch) => {
 	const currentBetItems = store?.getState()?.betting?.slip?.betItems;
-	if (currentBetItems.some((item) => item.ID === betItem.ID)) {
-		const element = currentBetItems.find((item) => item.ID === betItem.ID);
-		dispatch(handleRemoveBetItem(element));
+	console.log("currentBetItems: ", currentBetItems);
+	console.log("betItem: ", betItem);
+	if (currentBetItems.some((item) => item.NID === betItem.NID)) {
+		if (currentBetItems.some((item) => item.O === betItem.O)) {
+			const element = currentBetItems.find((item) => item.O === betItem.O);
+			console.log("element: ", element);
+			dispatch(handleRemoveBetItem(element));
+		} else {
+			console.log("aynı event");
+			dispatch(handleRemoveBetItem(betItem));
+			dispatch(addBetItem(betItem));
+		}
 	}
-	if (currentBetItems.some((item) => item.C === betItem.C)) {
-		dispatch(handleRemoveBetItem(betItem));
-		dispatch(addBetItem(betItem));
-	}
-	if (currentBetItems.length < 20) {
+	if (currentBetItems.some((item) => item.NID !== betItem.NID) || currentBetItems?.length === 0) {
+		console.log("ilk defa eklendi");
 		dispatch(addBetItem(betItem));
 	}
 };
