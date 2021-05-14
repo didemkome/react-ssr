@@ -4,12 +4,12 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { throttle } from "underscore";
-import bettingReducer from "../reducers/bettingReducer";
+import rootReducer from "../reducers/rootReducer";
 import { loadState, saveState } from "../../utils";
 
 let persistedState = loadState();
 
-if (!persistedState || !persistedState.global.version) {
+if (!persistedState) {
 	persistedState = undefined;
 }
 
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === `development`) {
 	middlewares.push(logger);
 }
 
-const store = createStore(bettingReducer, persistedState, composeWithDevTools(applyMiddleware(...middlewares)));
+const store = createStore(rootReducer, persistedState, composeWithDevTools(applyMiddleware(...middlewares)));
 
 store.subscribe(
 	throttle(
