@@ -6,6 +6,9 @@ A starter for a project using ExpressJs and ReactJs with server side rendering.
 ```
 $ git clone https://github.com/didemkome/react-ssr.git
 $ cd react-ssr
+```
+Remove package-lock.json and node_modules.
+```
 $ yarn install
 ```
 
