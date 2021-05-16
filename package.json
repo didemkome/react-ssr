@@ -1,14 +1,15 @@
 {
-	"name": "todo-app-tutorial",
+	"name": "react-ssr",
+  "description": "A starter for a project using ExpressJs and ReactJs with server side rendering.",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
 		"lint": "eslint . --cache && echo \"eslint: no lint errors\"",
 		"lint:fix": "eslint . --fix && echo \"eslint: no lint errors\"",
-		"start": "node server/index.js",
+    "start": "yarn build && node server/index.js",
 		"test": "jest",
-		"build": "webpack-cli",
+		"build": "webpack-cli"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.0",
