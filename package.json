@@ -6,11 +6,10 @@
 	"scripts": {
 		"lint": "eslint . --cache && echo \"eslint: no lint errors\"",
 		"lint:fix": "eslint . --fix && echo \"eslint: no lint errors\"",
-		"start": "webpack-cli serve --mode development --port 3000",
-    "test": "jest",
-    "build": "webpack-cli"
-
-  },
+		"start": "node server/index.js",
+		"test": "jest",
+		"build": "webpack-cli",
+	},
 	"devDependencies": {
 		"@babel/core": "^7.14.0",
 		"@babel/eslint-parser": "^7.13.14",
@@ -37,6 +36,9 @@
 		"webpack-dev-server": "^3.11.2"
 	},
 	"dependencies": {
+		"@babel/register": "^7.13.16",
+		"express": "^4.17.1",
+		"ignore-styles": "^5.0.1",
 		"node-sass": "^6.0.0",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.2",
