@@ -6,8 +6,9 @@
 	"scripts": {
 		"lint": "eslint . --cache && echo \"eslint: no lint errors\"",
 		"lint:fix": "eslint . --fix && echo \"eslint: no lint errors\"",
-		"start": "webpack-cli serve --mode development",
-    "test": "jest"
+		"start": "webpack-cli serve --mode development --port 300",
+    "test": "jest",
+    "build": "webpack --mode production"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.14.0",

@@ -1,13 +1,21 @@
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+	mode: "development",
 	devtool: "source-map",
-	entry: "./src/index.js",
+	entry: {
+		index: "./src/index.js",
+		shared: "lodash",
+	},
 	output: {
-		path: path.join(__dirname, "/dist"),
-		filename: "index_bundle.js",
+		filename: "[name].bundle.js",
+		path: path.resolve(__dirname, "dist"),
+	},
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+		},
 	},
 	module: {
 		rules: [
