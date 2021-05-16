@@ -18,14 +18,36 @@
     font-weight: bold;
     margin-left: 5px;
     width: 320px;
+
+    /* Small Devices */
+    @media only screen and (min-width : 320px) {
+      font-size: 10px;
+      width: 100px;
+    }
+
+    @media only screen and (min-width:321px) and (min-width:768px) and (min-width:769px){
+      font-size: 14px;
+      width: 320px;
+    }
   }
 
   &.event-date-team-name{
     border-right: 2px solid $color-gray;
     color: $color-black;
     margin-left: 5px;
-    max-width: 320px;
-    min-width: 320px;
+
+    /* Small Devices */
+    @media only screen and (min-width : 320px) {
+      font-size: 10px;
+      max-width: 100px;
+      min-width: 100px;
+    }
+
+    @media only screen and (min-width:321px) and (min-width:768px) and (min-width:769px){
+      font-size: 14px;
+      max-width: 320px;
+      min-width: 320px;
+    }
   }
 
   &.event-comment{
@@ -33,6 +55,15 @@
     border-right: 2px solid $color-gray;
     margin-left: 5px;
     width: 90px;
+
+    /* Small Devices */
+    @media only screen and (min-width : 320px) {
+        display: none;
+    }
+
+    @media only screen and (min-width:321px) and (min-width:768px) and (min-width:769px){
+      display: flex;
+    }
   }
 
   &.sticky{
