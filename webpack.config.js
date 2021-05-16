@@ -4,13 +4,10 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
 	mode: "development",
 	devtool: "source-map",
-	entry: {
-		index: "./src/index.js",
-		shared: "lodash",
-	},
+	entry: "./src/index.js",
 	output: {
+		path: path.join(__dirname, "/dist"),
 		filename: "[name].bundle.js",
-		path: path.resolve(__dirname, "dist"),
 	},
 	optimization: {
 		splitChunks: {
